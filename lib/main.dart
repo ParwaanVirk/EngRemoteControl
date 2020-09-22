@@ -21,8 +21,8 @@ class COGU extends StatelessWidget {
         ),
         accentColor: Colors.purple,
       ),
-      home: DeviceScreen(),
-      initialRoute: 'devices_screen',
+      home: WelcomeScreen(),
+      initialRoute: 'welcome_screen',
       routes: {
         'welcome_screen': (context) => WelcomeScreen(),
         'login_screen': (context) => LoginScreen(),
