@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'command_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class DeviceScreen extends StatefulWidget {
   @override
@@ -9,6 +11,31 @@ class DeviceScreen extends StatefulWidget {
 }
 
 class _DeviceScreenState extends State<DeviceScreen> {
+  final _auth = FirebaseAuth.instance;
+  User loggedInUser;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    final userfromdatabase =
+        _auth.currentUser; // see whether await should come here or not
+    try {
+      if (userfromdatabase != null) {
+        loggedInUser = userfromdatabase;
+        print(loggedInUser.email);
+      } else {
+        print("what the fuck ");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   bool isSwitched = false;
 
   @override
@@ -26,6 +53,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
               color: Colors.red[800],
             ),
             onPressed: () {
+              _auth.signOut();
               Navigator.pop(context);
             },
           ),

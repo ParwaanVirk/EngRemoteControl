@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CommandScreen extends StatefulWidget {
   @override
@@ -6,6 +7,30 @@ class CommandScreen extends StatefulWidget {
 }
 
 class _CommandScreenState extends State<CommandScreen> {
+  final _auth = FirebaseAuth.instance;
+  User loggedInUser;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    final userfromdatabase =
+        _auth.currentUser; // see whether await should come here or not
+    try {
+      if (userfromdatabase != null) {
+        loggedInUser = userfromdatabase;
+        print(loggedInUser.email);
+      } else {
+        print("what the fuck ");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

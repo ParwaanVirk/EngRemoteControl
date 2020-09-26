@@ -6,9 +6,14 @@ import 'welcome_screen.dart';
 import 'devices_screen.dart';
 import 'command_screen.dart';
 import 'testing_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(COGU());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(COGU());
 
+}
 class COGU extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
