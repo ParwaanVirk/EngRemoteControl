@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'brain.dart';
 
 class CommandScreen extends StatefulWidget {
   @override
@@ -209,7 +210,10 @@ class _CommandScreenState extends State<CommandScreen> {
                                 Radius.circular(32.0),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              print('punub starting');
+                              mainfd();
+                            },
                             child: Text(
                               'SEND',
                               style: TextStyle(
